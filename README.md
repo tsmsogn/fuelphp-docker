@@ -45,7 +45,7 @@ For those looking to get started in `60 sec` using just the defaults (which are 
 	And then to simultaneously download the latest master file, unpack it, and stuff it into a docker folder, run this...
 	
 	```bash
-    curl -Lo fuelphp-docker.zip https://github.com/cwbit/fuelphp-docker/archive/master.zip && \
+    curl -Lo fuelphp-docker.zip https://github.com/tsmsogn/fuelphp-docker/archive/master.zip && \
     unzip fuelphp-docker.zip && \
     mv fuelphp-docker-master docker
 	```	
