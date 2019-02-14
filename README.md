@@ -1,5 +1,5 @@
-# cakephp-docker
-A Docker Compose setup for containerized CakePHP Applications
+# fuelphp-docker
+A Docker Compose setup for containerized FuelPHP Applications
 
 This setup spools up the following containers
 
@@ -22,14 +22,14 @@ For those looking to get started in `60 sec` using just the defaults (which are 
 
 1. Download the ZIP file for this repo
 1. Create the following folder structure 
- * Put your CakePHP app inside the `cakephp` folder
+ * Put your FuelPHP app inside the `fuelphp` folder
  * and the files from this repo into the `docker` folder
 
 	```
 	    somefolder
 	        docker
 	            .. put the zip files in here ..
-	        cakephp
+	        fuelphp
 	            .. put your cake app in here ..
 	```
 	
@@ -39,15 +39,15 @@ For those looking to get started in `60 sec` using just the defaults (which are 
     cd ~/your/local/DEV/folder
     mkdir myapp
     cd myapp
-    mkdir cakephp
+    mkdir fuelphp
 	```
 	
 	And then to simultaneously download the latest master file, unpack it, and stuff it into a docker folder, run this...
 	
 	```bash
-    curl -Lo cakephp-docker.zip https://github.com/cwbit/cakephp-docker/archive/master.zip && \
-    unzip cakephp-docker.zip && \
-    mv cakephp-docker-master docker
+    curl -Lo fuelphp-docker.zip https://github.com/cwbit/fuelphp-docker/archive/master.zip && \
+    unzip fuelphp-docker.zip && \
+    mv fuelphp-docker-master docker
 	```	
 3. From commandline, `cd` into the `docker` directory and run `docker-compose up`
 
@@ -85,7 +85,7 @@ Here is an example of what my typical setup looks like
 
 ```
 	myapp-folder
-		cakephp
+		fuelphp
 			src
 			config
 			..
@@ -132,7 +132,7 @@ cd /path/to/your/app/docker
 docker-compose -up
 ```
 
-That's it. You can now access your CakePHP app at 
+That's it. You can now access your FuelPHP app at 
 
 `localhost:8180`
 
@@ -197,24 +197,24 @@ There are 4 containers that I use all the time that will be spooled up automatic
 
 ### `myapp-nginx` - the web server
 
-First we're creating an nginx server. The configuration is set based on the CakePHP suggestions for nginx and `myapp-nginx` will handle all the incoming requests from the client and forward them to the `myapp-php-fpm` server which is what actually runs your PHP code.
+First we're creating an nginx server. The configuration is set based on the FuelPHP suggestions for nginx and `myapp-nginx` will handle all the incoming requests from the client and forward them to the `myapp-php-fpm` server which is what actually runs your PHP code.
 
 You can configure the **nginx server** by editing the `/nginx/nginx.conf` file
 
 ### `myapp-php-fpm` - the PHP processor
 
-This container runs `php` (and it's extensions) needed for your CakePHP app
+This container runs `php` (and it's extensions) needed for your FuelPHP app
 
 It automatically includes the following extensions
 
-* `php7.1-intl` (required for CakePHP 3.x +)
+* `php7.1-intl` (required for FuelPHP 3.x +)
 * `php7.1-mbstring`
 * `php7.1-sqlite3` (required for DebugKit)
 * `php7.1-mysql`
 
 It also includes some php ini overrides (see `php-fpm\php-ini-overrides.ini`)
 
-This container will (by default) look for your web app code in `../cakephp/` (relative to the `docker-compose` file).
+This container will (by default) look for your web app code in `../fuelphp/` (relative to the `docker-compose` file).
 
 You can configure what **PHP extensions** are loaded by editing `/php-fpm/Dockerfile`
 
@@ -276,4 +276,4 @@ submitted by @jeroenvdv
 
 `myapp-nginx | nginx: [emerg] open() "/var/www/myapp/logs/access.log" failed (2: No such file or directory)`
 
-This is caused by not installing CakePHP completely and can be fixed by creating the logs folder in your `myapp/cakephp` folder.
+This is caused by not installing FuelPHP completely and can be fixed by creating the logs folder in your `myapp/fuelphp` folder.
